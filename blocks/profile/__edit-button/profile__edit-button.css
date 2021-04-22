@@ -5,16 +5,16 @@
     width: 18px;
     height: 18px;
     padding: 0;
-    position: absolute;
-    right: 20px;
-    top: 26px;
+    grid-area: edit-button;
+    align-self: end;
+    margin-bottom: 4px;
 }
 
 @media (min-width: 1000px) {
     .profile__edit-button {
+        align-self: center;
+        margin: 0;
         width: 24px;
         height: 24px;
-        top: 32px;
-        right: 70px;
     }
 }
