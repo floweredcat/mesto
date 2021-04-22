@@ -1,0 +1,12 @@
+.button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 0;
+    transition: opacity linear 1s;
+}
+
+.button:hover {
+    opacity: 0.6;
+    transition: opacity linear 0.5s;
+}

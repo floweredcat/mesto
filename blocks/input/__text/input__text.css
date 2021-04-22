@@ -1,0 +1,15 @@
+.input__text {
+    width: 100%;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 400;
+    margin-top: 17px;
+    padding: 13px 0;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.input__text:first-of-type {
+    margin-top: 0;
+}

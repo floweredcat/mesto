@@ -1,0 +1,20 @@
+.profile__edit-button {
+    background-image: url(../../../images/edit-button.png);
+    background-size: cover;
+    background-color: black;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    position: absolute;
+    right: 20px;
+    top: 26px;
+}
+
+@media (min-width: 1000px) {
+    .profile__edit-button {
+        width: 24px;
+        height: 24px;
+        top: 32px;
+        right: 70px;
+    }
+}

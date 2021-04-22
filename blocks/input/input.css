@@ -1,0 +1,11 @@
+.input {
+    width: 85%;
+    margin: 0 auto;
+    padding: 75px 0 45px;
+}
+
+@media (min-width: 550px) {
+    .input {
+        margin: 0 36px;
+    }
+}
