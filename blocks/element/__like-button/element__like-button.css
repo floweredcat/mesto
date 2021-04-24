@@ -1,10 +1,22 @@
 .element__like-button {
-    background-image: url(../../../images/like-button.png);
+    background-image: url(../../../images/like-button.svg);
     background-color: white;
     width: 22px;
     height: 19px;
     margin: 25px auto 21px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 0;
+    transition: opacity linear 1s;
+    cursor: pointer;
 }
 
-.element__like-button:active {
-}
+    .element__like-button:active {
+        background-image: url(../../../images/like-button_active.svg);
+    }
+
+    .element__like-button:hover {
+        opacity: 0.5;
+        transition: opacity linear 0.5s;
+    }

@@ -5,10 +5,20 @@
     color: white;
     margin: 0 22px;
     border-radius: 2px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 0;
+    transition: opacity linear 1s;
+    cursor: pointer;
 }
 
 @media (min-width: 550px) {
     .popup__button-save {
         margin:0 36px;
     }
+}
+.popup__button-save:hover {
+    opacity: 0.8;
+    transition: opacity linear 0.5s;
 }

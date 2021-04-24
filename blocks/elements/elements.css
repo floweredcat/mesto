@@ -8,14 +8,14 @@
     padding-top: 36px;
 }
 
-@media (min-width: 582px) {
+@media (min-width: 600px) {
     .elements {
         padding-top: 50px;
         max-width: 582px;
     }
 }
 
-@media (min-width: 880px) {
+@media (min-width: 900px) {
     .elements {
         max-width: 880px;
     }

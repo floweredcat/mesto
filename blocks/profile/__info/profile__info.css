@@ -12,7 +12,8 @@
 @media (min-width: 1000px) {
     .profile__info {
         margin: 0 0 0 24px;
-        width: 400px;
+        width: 360px;
+        grid-column-gap: 0;
     }
 }
 
