@@ -1,11 +1,12 @@
-.input {
+.form {
     width: 85%;
     margin: 0 auto;
-    padding: 65px 0 45px;
+    padding: 65px 0 0;
 }
 
 @media (min-width: 550px) {
-    .input {
+    .form {
+        width: auto;
         margin: 0 36px;
     }
 }

@@ -1,9 +1,8 @@
-.popup__button-save {
-    width: 85%;
+.form__button-save {
+    width: 100%;
     height: 46px;
     background-color: black;
     color: white;
-    margin: 0 22px;
     border-radius: 2px;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -12,14 +11,17 @@
     cursor: pointer;
     font-size: 14px;
     line-height: 18px;
+    margin: 45px 0 0;
 }
 
 @media (min-width: 550px) {
-    .popup__button-save {
-        margin:0 36px;
+    .form__button-save {
+        font-size: 18px;
+        line-height:22px;
+        margin:48px 0 0;
     }
 }
-.popup__button-save:hover {
+.form__button-save:hover {
     opacity: 0.8;
     transition: opacity linear 0.5s;
 }
