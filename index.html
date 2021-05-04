@@ -22,47 +22,43 @@
                 <button class="profile__add-button" type="button"></button>
             </section>
             <section class="elements">
-                <article class="element">
-                    <img src="./images/karachaevo-cherkessk.jpg" alt="Карачаево-Черкесск" class="element__image" />
-                    <h2 class="element__title">Карачаево-Черкесск</h2>
-                    <button class="element__like-button" type="button"></button>
-                </article>
-                <article class="element">
-                    <img src="./images/karachaevo-cherkessk.jpg" alt="Карачаево-Черкесск" class="element__image" />
-                    <h2 class="element__title">Карачаево-Черкесск</h2>
-                    <button class="element__like-button" type="button"></button>
-                </article>
-                <article class="element">
-                    <img src="./images/karachaevo-cherkessk.jpg" alt="Карачаево-Черкесск" class="element__image" />
-                    <h2 class="element__title">Карачаево-Черкесск</h2>
-                    <button class="element__like-button" type="button"></button>
-                </article>
-                <article class="element">
-                    <img src="./images/karachaevo-cherkessk.jpg" alt="Карачаево-Черкесск" class="element__image" />
-                    <h2 class="element__title">Карачаево-Черкесск</h2>
-                    <button class="element__like-button" type="button"></button>
-                </article>
-                <article class="element">
-                    <img src="./images/karachaevo-cherkessk.jpg" alt="Карачаево-Черкесск" class="element__image" />
-                    <h2 class="element__title">Карачаево-Черкесск</h2>
-                    <button class="element__like-button" type="button"></button>
-                </article>
-                <article class="element">
-                    <img src="./images/karachaevo-cherkessk.jpg" alt="Карачаево-Черкесск" class="element__image" />
-                    <h2 class="element__title">Карачаево-Черкесск</h2>
-                    <button class="element__like-button" type="button"></button>
-                </article>
+                <template id="template-card">
+                    <article class="element">
+                        <button type="button" class="element__delete-button"></button>
+                        <img src="" alt="" class="element__image" />
+                        <h2 class="element__title"></h2>
+                        <button class="element__like-button" type="button"></button>
+                    </article>
+                </template>
             </section>
-            <section class="popup">
+            <section class="popup popup_type_edit-profile">
                 <div class="popup__container">
                     <button class="popup__button-close" type="button"></button>
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <form name="edit-profile" class="form">
+                    <form name="edit-profile" class="form" id="form-profile">
                         <input type="text" name="profile-name" placeholder="Имя" class="form__input form__input_type_name" value="Жак-Ив Кусто" />
                         <input type="text" name="profile-job" placeholder="О себе" class="form__input form__input_type_description" value="Исследователь океана" />
                         <button type="submit" class="form__button-save" value="Сохранить">Сохранить</button>
                     </form>
                 </div>
+            </section>
+            <section class="popup popup_type_add-card">
+                <div class="popup__container">
+                    <button class="popup__button-close popup__button-close_add" type="button"></button>
+                    <h2 class="popup__title">Новое место</h2>
+                    <form name="add-element" class="form" id="form-card">
+                        <input type="text" name="element-name" placeholder="Название" class="form__input form__input_type_place" value="" />
+                        <input type="text" name="element-link" placeholder="Ссылка на картинку" class="form__input form__input_type_link" value="" />
+                        <button type="submit" class="form__button-save" value="Сохранить" id="profileSave">Сохранить</button>
+                    </form>
+                </div>
+            </section>
+            <section class="popup popup__figure">
+                <figure class="figure">
+                    <button class="popup__button-close popup__button-close_add" type="button" id="closeImg"></button>
+                    <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="" class="figure__image"/>
+                    <figcaption class="figure__caption">Балашиха</figcaption>
+                </figure>
             </section>
         </main>
         <footer class="footer">
