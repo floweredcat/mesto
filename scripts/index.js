@@ -52,9 +52,12 @@ const initialCards = [
 
 // Функция добавления карточек при загрузке страницы
 initialCards.forEach (function (item){
-    console.log(item.name, item.link);
-    createCard(item.link, item.name);
+    renderCard(item.link, item.name);
 })
+
+function renderCard(link, name) {
+    cardsContainer.prepend(createCard(link, name));
+}
 
 function createCard(link, name) {
     const card = template.querySelector('.element').cloneNode(true);
@@ -63,17 +66,17 @@ function createCard(link, name) {
     card.querySelector('.element__image').alt = name;
     card.querySelector('.element__title').textContent = name;
 
-    likeButtonListener(card);
-    deleteButton(card);
+    handleLikeButton(card);
+    deleteCard(card);
     openPopupImg(card);
 
-    cardsContainer.prepend(card);
+    return card
 }
 
 // Функция добавления карточек через инпут попапа
 function formCardSubmitHandler(evt) {
     evt.preventDefault();
-    createCard(inputAddCardLink.value, inputAddCardName.value);
+    renderCard(inputAddCardLink.value, inputAddCardName.value);
     popupFormCard.reset();
     closePopup(popupAddCard);
 }
@@ -81,7 +84,7 @@ function formCardSubmitHandler(evt) {
 
 // Функция удаления карточек
 
-function deleteButton(card) {
+function deleteCard(card) {
 card.querySelector('.element__delete-button').addEventListener('click', function(evt) {
     const element = evt.target.closest('.element')
     element.remove();
@@ -89,7 +92,7 @@ card.querySelector('.element__delete-button').addEventListener('click', function
 }
 
 // Функция лайка для карточек
-function likeButtonListener(card) {
+function handleLikeButton(card) {
     card.querySelector('.element__like-button').addEventListener('click', function(evt) {
         evt.target.classList.toggle('element__like-button_active');
     })
@@ -105,12 +108,6 @@ card.querySelector('.element__image').addEventListener('click', function(evt) {
         popupFigureCaption.textContent = caption;
     });
 }
-
-// закрытие попапа фото карточки
-function closePopupImg() {
-        popupFigure.classList.remove('popup_opened');
-}
-
 
 // открытие окна редактирования профиля
 function openEditPopup() {
@@ -163,7 +160,9 @@ closePopupAddButton.addEventListener('click', closeAddCardPopup);
 popupFormCard.addEventListener('submit', formCardSubmitHandler);
 
 //слушатель кнопки закрытия попапа с фото
-closeImgButton.addEventListener('click', closePopupImg);
+closeImgButton.addEventListener('click', () => {
+    closePopup(popupFigure);
+});
 
 
 
