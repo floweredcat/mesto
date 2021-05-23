@@ -50,6 +50,22 @@ const initialCards = [
   }
 ]; 
 
+const setOverlayListener = (popup) => {
+    popup.addEventListener('click', (evt) => {
+        if(evt.target === popup) {
+            closePopup(popup);
+        }
+    })
+}
+
+const setEscListener = (popup) => {
+    document.addEventListener('keydown', (evt) => {
+        if(evt.key === 'Escape') {
+            closePopup(popup);
+        }
+    })
+}
+
 // Функция добавления карточек при загрузке страницы
 initialCards.forEach (function (item){
     renderCard(item.link, item.name);
@@ -131,6 +147,8 @@ function closeAddCardPopup() {
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    setOverlayListener(popup);
+    setEscListener(popup);
 }
 
 function closePopup(popup) {
