@@ -1,5 +1,5 @@
 const openPopupButton = document.querySelector('.profile__edit-button');
-const closePopupButton = document.querySelector('.popup__button-close');
+const closeEditProfileButton = document.querySelector('#edit-profile-close');
 const nameInput = document.querySelector('.form__input_type_name');
 const jobInput = document.querySelector('.form__input_type_description');
 const profileName = document.querySelector('.profile__name');
@@ -58,12 +58,11 @@ const setOverlayListener = (popup) => {
     })
 }
 
-const setEscListener = (popup) => {
-    document.addEventListener('keydown', (evt) => {
-        if(evt.key === 'Escape') {
-            closePopup(popup);
+const setEscListener = function(evt) {
+            if(evt.key === 'Escape') {
+            const openedPopup = document.querySelector('.popup_opened')
+            closePopup(openedPopup);
         }
-    })
 }
 
 // Функция добавления карточек при загрузке страницы
@@ -90,11 +89,12 @@ function createCard(link, name) {
 }
 
 // Функция добавления карточек через инпут попапа
-function formCardSubmitHandler(evt) {
+function handleAddCard(evt) {
     evt.preventDefault();
     renderCard(inputAddCardLink.value, inputAddCardName.value);
     popupFormCard.reset();
     closePopup(popupAddCard);
+    popupAddCard.querySelector('.form__button-save').disabled = true;
 }
 
 
@@ -133,7 +133,7 @@ function openEditPopup() {
 }
 
 // изменение данных профиля из инпута попапа
-function formProfileSubmitHandler(evt) {
+function handleProfileSubmitForm(evt) {
 	evt.preventDefault();
 	profileName.textContent = nameInput.value;
 	profileText.textContent = jobInput.value;
@@ -147,22 +147,22 @@ function closeAddCardPopup() {
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    setOverlayListener(popup);
-    setEscListener(popup);
+    document.addEventListener('keydown', setEscListener);
 }
 
 function closePopup(popup) {
+    document.removeEventListener('keydown', setEscListener);
     popup.classList.remove('popup_opened');
 }
 
 //слушатель отправки формы редактирования профиля
-popupFormProfile.addEventListener('submit', formProfileSubmitHandler); 
+popupFormProfile.addEventListener('submit', handleProfileSubmitForm); 
 
 //слушатель кнопки открытия попапа редактирования профиля
 openPopupButton.addEventListener('click', openEditPopup);
 
 //кнопка закрытия попапа редактирования профиля
-closePopupButton.addEventListener('click', () => {
+closeEditProfileButton.addEventListener('click', () => {
     closePopup(popupEditProfile)
 });
 
@@ -175,7 +175,7 @@ openAddCardButton.addEventListener('click', () => {
 closePopupAddButton.addEventListener('click', closeAddCardPopup);
 
 //слушатель отправки формы добавления карточки из попапа
-popupFormCard.addEventListener('submit', formCardSubmitHandler);
+popupFormCard.addEventListener('submit', handleAddCard);
 
 //слушатель кнопки закрытия попапа с фото
 closeImgButton.addEventListener('click', () => {

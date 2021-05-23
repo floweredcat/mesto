@@ -33,14 +33,14 @@
             </section>
             <section class="popup popup_type_edit-profile">
                 <div class="popup__container">
-                    <button class="popup__button-close" type="button"></button>
+                    <button class="popup__button-close" type="button" id="edit-profile-close"></button>
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <form name="edit-profile" class="form" id="form-profile" novalidate>
                         <input type="text" name="profile-name" placeholder="Имя" class="form__input form__input_type_name" value="Жак-Ив Кусто" id="name" minlength="2" maxlength="40" required/>
                         <span class="form__input-error" id="name-error"></span>
                         <input type="text" name="profile-job" placeholder="О себе" class="form__input form__input_type_description" value="Исследователь океана" id="job" minlength="2" maxlength="200" required/>
                         <span class="form__input-error" id="job-error"></span>
-                        <button type="submit" class="form__button-save" value="Сохранить" id="#" disabled>Сохранить</button>
+                        <button type="submit" class="form__button-save" value="Сохранить" id="saveProfile">Сохранить</button>
                     </form>
                 </div>
             </section>
@@ -51,7 +51,7 @@
                     <form name="add-element" class="form" id="form-card" novalidate>
                         <input type="text" name="element-name" placeholder="Название" class="form__input form__input_type_place" value="" id="place" minlength="2" maxlength="30" required/>
                         <span class="form__input-error" id="place-error"></span>
-                        <input type="url" name="element-link" placeholder="Ссылка на картинку" class="form__input form__input_type_link" value="" id="link" requered/>
+                        <input type="url" name="element-link" placeholder="Ссылка на картинку" class="form__input form__input_type_link" value="" id="link" required/>
                         <span class="form__input-error" id="link-error"></span>
                         <button type="submit" class="form__button-save" value="Сохранить" id="profileSave">Сохранить</button>
                     </form>
