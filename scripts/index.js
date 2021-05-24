@@ -15,6 +15,7 @@ const popupFormCard = document.querySelector('#form-card');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const popupFigure = document.querySelector('.popup_type_image');
+const addCardButtonSave = popupAddCard.querySelector('.form__button-save');
 
 const popupFigureImage = popupFigure.querySelector('.figure__image');
 const popupFigureCaption = popupFigure.querySelector('.figure__caption');
@@ -94,7 +95,7 @@ function handleAddCard(evt) {
     renderCard(inputAddCardLink.value, inputAddCardName.value);
     popupFormCard.reset();
     closePopup(popupAddCard);
-    popupAddCard.querySelector('.form__button-save').disabled = true;
+    addCardButtonSave.disabled = true;
 }
 
 

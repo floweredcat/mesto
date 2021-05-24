@@ -81,7 +81,7 @@ const config = {
     inputSelector: '.form__input',
     submitButtonSelector: '.form__button-save',
     inputErrorClass: 'form__input_invalid',
-    errorClass: 'form__input-error'    
+    errorClass: 'form__input-error_active'    
 }
 
 enableValidation(config);
