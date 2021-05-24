@@ -51,17 +51,16 @@ const initialCards = [
   }
 ]; 
 
-const setOverlayListener = (popup) => {
-    popup.addEventListener('click', (evt) => {
-        if(evt.target === popup) {
-            closePopup(popup);
+const setOverlayListener = function(evt) {
+    const openedPopup = document.querySelector('.popup_opened');
+        if(evt.target === openedPopup) {
+            closePopup(openedPopup);
         }
-    })
-}
+    }
 
 const setEscListener = function(evt) {
             if(evt.key === 'Escape') {
-            const openedPopup = document.querySelector('.popup_opened')
+            const openedPopup = document.querySelector('.popup_opened');
             closePopup(openedPopup);
         }
 }
@@ -148,11 +147,13 @@ function closeAddCardPopup() {
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('mousedown', setOverlayListener);
     document.addEventListener('keydown', setEscListener);
 }
 
 function closePopup(popup) {
     document.removeEventListener('keydown', setEscListener);
+    document.removeEventListener('mousedown', setOverlayListener)
     popup.classList.remove('popup_opened');
 }
 
