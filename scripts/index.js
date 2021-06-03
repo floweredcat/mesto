@@ -12,20 +12,11 @@ const openAddCardButton = document.querySelector('.profile__add-button');
 const inputAddCardName = document.querySelector('.form__input_type_place');
 const inputAddCardLink = document.querySelector('.form__input_type_link');
 const closePopupAddButton = document.querySelector('.popup__button-close_add');
-const cardsContainer = document.querySelector('.elements');
 const popupFormCard = document.querySelector('#form-card');
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
-const popupFigure = document.querySelector('.popup_type_image');
 const addCardButtonSave = popupAddCard.querySelector('.form__button-save');
-
-const popupFigureImage = popupFigure.querySelector('.figure__image');
-const popupFigureCaption = popupFigure.querySelector('.figure__caption');
-const closeImgButton = document.querySelector('#closeImg');
-
-const template = document.querySelector('#template-card').content;
-    const card = template.querySelector('.element').cloneNode(true);
 
 const initialCards = [
   {
