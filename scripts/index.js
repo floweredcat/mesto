@@ -1,3 +1,6 @@
+import { Card } from './Card.js'
+import { FormValidator } from './FormValidator.js'
+
 const openPopupButton = document.querySelector('.profile__edit-button');
 const closeEditProfileButton = document.querySelector('#edit-profile-close');
 const nameInput = document.querySelector('.form__input_type_name');
@@ -51,41 +54,15 @@ const initialCards = [
   }
 ]; 
 
-const setOverlayListener = function(evt) {
-    const openedPopup = document.querySelector('.popup_opened');
-        if(evt.target === openedPopup) {
-            closePopup(openedPopup);
-        }
-    }
-
-const setEscListener = function(evt) {
-            if(evt.key === 'Escape') {
-            const openedPopup = document.querySelector('.popup_opened');
-            closePopup(openedPopup);
-        }
-}
-
 // Функция добавления карточек при загрузке страницы
 initialCards.forEach (function (item){
     renderCard(item.link, item.name);
 })
 
 function renderCard(link, name) {
-    cardsContainer.prepend(createCard(link, name));
-}
+    const cardTemplate = new Card('#template-card', name, link);
 
-function createCard(link, name) {
-    const card = template.querySelector('.element').cloneNode(true);
-
-    card.querySelector('.element__image').src = link;
-    card.querySelector('.element__image').alt = name;
-    card.querySelector('.element__title').textContent = name;
-
-    handleLikeButton(card);
-    deleteCard(card);
-    openPopupImg(card);
-
-    return card
+    cardTemplate.renderCard()
 }
 
 // Функция добавления карточек через инпут попапа
@@ -107,29 +84,14 @@ card.querySelector('.element__delete-button').addEventListener('click', function
 });
 }
 
-// Функция лайка для карточек
-function handleLikeButton(card) {
-    card.querySelector('.element__like-button').addEventListener('click', function(evt) {
-        evt.target.classList.toggle('element__like-button_active');
-    })
-}
-
-// открытие попапа фото карточки
-function openPopupImg(card) {
-card.querySelector('.element__image').addEventListener('click', function(evt) {
-        openPopup(popupFigure);
-        const caption = evt.target.closest('.element').querySelector('.element__title').textContent;
-        popupFigureImage.alt = caption;
-        popupFigureImage.src = evt.target.src;
-        popupFigureCaption.textContent = caption;
-    });
-}
-
 // открытие окна редактирования профиля
 function openEditPopup() {
 	openPopup(popupEditProfile)
 	nameInput.value = profileName.textContent;
 	jobInput.value = profileText.textContent;
+
+    // const formValidatorEditProfile = new FormValidator(config, popupEditProfile);
+    // formValidatorEditProfile.enableValidation();
 }
 
 // изменение данных профиля из инпута попапа
@@ -145,10 +107,27 @@ function closeAddCardPopup() {
     popupFormCard.reset();
 }
 
+const setOverlayListener = function(evt) {
+    const openedPopup = document.querySelector('.popup_opened');
+        if(evt.target === openedPopup) {
+            closePopup(openedPopup);
+        }
+    }
+
+const setEscListener = function(evt) {
+            if(evt.key === 'Escape') {
+            const openedPopup = document.querySelector('.popup_opened');
+            closePopup(openedPopup);
+        }
+}
+
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('mousedown', setOverlayListener);
     document.addEventListener('keydown', setEscListener);
+
+    const formValidator = new FormValidator(config, popup);
+    formValidator.enableValidation();
 }
 
 function closePopup(popup) {
@@ -179,10 +158,12 @@ closePopupAddButton.addEventListener('click', closeAddCardPopup);
 //слушатель отправки формы добавления карточки из попапа
 popupFormCard.addEventListener('submit', handleAddCard);
 
-//слушатель кнопки закрытия попапа с фото
-closeImgButton.addEventListener('click', () => {
-    closePopup(popupFigure);
-});
+const config = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.form__button-save',
+    inputErrorClass: 'form__input_invalid',
+    errorClass: 'form__input-error_active'    
+}
 
-
-
+export {config};
