@@ -16,7 +16,9 @@ const popupFormCard = document.querySelector('#form-card');
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
+const formAddCard = popupAddCard.querySelector('.form');
 const addCardButtonSave = popupAddCard.querySelector('.form__button-save');
+const cardsContainer = document.querySelector('.elements');
 
 const initialCards = [
   {
@@ -42,37 +44,32 @@ const initialCards = [
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  },
+  {
+    name: 'Ревьюеру',
+    link: 'https://btfr.cc/ui3'
   }
 ]; 
-
-// Функция добавления карточек при загрузке страницы
-initialCards.forEach (function (item){
-    renderCard(item.link, item.name);
-})
 
 function renderCard(link, name) {
     const cardTemplate = new Card('#template-card', name, link);
 
-    cardTemplate.renderCard()
+    cardsContainer.prepend(cardTemplate.createCard())
 }
 
 // Функция добавления карточек через инпут попапа
 function handleAddCard(evt) {
     evt.preventDefault();
     renderCard(inputAddCardLink.value, inputAddCardName.value);
-    popupFormCard.reset();
+    const resetForm = new FormValidator (config, formAddCard);
+    resetForm.resetForm();
     closePopup(popupAddCard);
     addCardButtonSave.disabled = true;
 }
 
-
-// Функция удаления карточек
-
-function deleteCard(card) {
-card.querySelector('.element__delete-button').addEventListener('click', function(evt) {
-    const element = evt.target.closest('.element')
-    element.remove();
-});
+const enableValidation = (config, popup) => {
+    const formValidatorEditProfile = new FormValidator(config, popup);
+    formValidatorEditProfile.enableValidation();
 }
 
 // открытие окна редактирования профиля
@@ -81,8 +78,7 @@ function openEditPopup() {
 	nameInput.value = profileName.textContent;
 	jobInput.value = profileText.textContent;
 
-    // const formValidatorEditProfile = new FormValidator(config, popupEditProfile);
-    // formValidatorEditProfile.enableValidation();
+    enableValidation(config, popupEditProfile);
 }
 
 // изменение данных профиля из инпута попапа
@@ -95,7 +91,8 @@ function handleProfileSubmitForm(evt) {
 
 function closeAddCardPopup() {
     closePopup(popupAddCard);
-    popupFormCard.reset();
+    const resetForm = new FormValidator (config, formAddCard);
+    resetForm.resetForm();
 }
 
 const setOverlayListener = function(evt) {
@@ -116,9 +113,6 @@ function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('mousedown', setOverlayListener);
     document.addEventListener('keydown', setEscListener);
-
-    const formValidator = new FormValidator(config, popup);
-    formValidator.enableValidation();
 }
 
 function closePopup(popup) {
@@ -140,7 +134,14 @@ closeEditProfileButton.addEventListener('click', () => {
 
 //Слушатель кнопки открытия попапа для добавления карточки
 openAddCardButton.addEventListener('click', () => {
-    openPopup(popupAddCard)
+    openPopup(popupAddCard);
+    const inputList = formAddCard.querySelectorAll('.form__input');
+    inputList.forEach((input) => {
+        input.addEventListener('keydown', () => {
+            enableValidation(config, popupAddCard);
+        })
+    })
+    // enableValidation(config, popupAddCard);
 });
 
 //Слушатель кнопки закрытия попапа добавления карточки
@@ -157,4 +158,9 @@ const config = {
     errorClass: 'form__input-error_active'    
 }
 
-export {config};
+// Функция добавления карточек при загрузке страницы
+initialCards.forEach (function (item){
+    renderCard(item.link, item.name);
+})
+
+export {openPopup, closePopup};

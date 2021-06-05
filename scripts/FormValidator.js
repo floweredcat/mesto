@@ -26,12 +26,12 @@ class FormValidator {
 
     _checkInputValidity(inputElement, config) {
         if (inputElement.validity.valid) {
-            this._hideErrorMessage(inputElement, config);
-        }
+            this._hideErrorMessage(inputElement, config)
+            }
         else {
             this._showErrorMessage(inputElement, config);
-        }
     }
+}
 
     _hasInvalidInput(inputList) {
         return inputList.some((item) => {
@@ -65,10 +65,23 @@ class FormValidator {
         this._toggleButtonState(inputList, buttonElement);
 
         inputList.forEach((inputElement) => {
+            this._checkInputValidity(inputElement, rest);
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement, rest);
                 this._toggleButtonState(inputList, buttonElement);
             })
+        })
+    }
+
+    resetForm() {
+        const { inputSelector, submitButtonSelector, ...rest } = this._config;
+        this._formName.reset();
+        const inputList = Array.from(this._formName.querySelectorAll(inputSelector));
+        inputList.forEach((input) => {
+            this._hideErrorMessage(input, rest);
+            const inputList = Array.from(this._formName.querySelectorAll(inputSelector));
+            const buttonElement = this._formName.querySelector(submitButtonSelector);
+            this._toggleButtonState(inputList, buttonElement);
         })
     }
 
