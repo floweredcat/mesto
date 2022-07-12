@@ -44,10 +44,6 @@ const initialCards = [
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  },
-  {
-    name: 'Ревьюеру',
-    link: 'https://btfr.cc/ui3'
   }
 ]; 
 
