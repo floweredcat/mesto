@@ -17,6 +17,7 @@ module.exports = {
             title: 'webpack Boilerplate',
             template: path.resolve(__dirname, './index.html'), 
             filename: 'index.html', 
+            inject: false
         }),
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -26,7 +27,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
           },
           compress: true,
-          port: 5500,
+          port: 8080,
           hot: true
         },
 }
