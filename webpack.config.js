@@ -1,33 +1,40 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack')
+const Webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+    
     mode: 'development',
-    entry: {
-        main: path.resolve(__dirname, './scripts/index.js'),
-    },
+    entry: './scripts/index.js',
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname,  './dist'),
         filename: 'index.bundle.js',
+        clean: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'webpack Boilerplate',
             template: path.resolve(__dirname, './index.html'), 
             filename: 'index.html', 
             inject: false
         }),
-        new CleanWebpackPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        new Webpack.HotModuleReplacementPlugin(),
+        new MiniCssExtractPlugin(),
     ],
     devServer: {
         static: {
-            directory: path.join(__dirname, 'public'),
+            directory: path.join(__dirname, './public'),
           },
           compress: true,
           port: 8080,
           hot: true
         },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+            },
+        ]
+    }
 }

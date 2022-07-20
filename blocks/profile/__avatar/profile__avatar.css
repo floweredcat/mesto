@@ -4,6 +4,9 @@
     height: 120px;
     padding: 4px;
     margin: 0 auto;
+    background-image: url('../../../images/Avatar.png');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 @media (min-width: 800px) {
