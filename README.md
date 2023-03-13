@@ -3,6 +3,4 @@
 В данной работе использованы технологии адаптивной верстки grid-layout и flex, 
 также задействован JavaScript: гибкая вставка, функции, слушатели страницы, массивы, валидация форм, всё это осуществлено методами ООП.
 
-Update 20.07.22: Добавлена сборка проекта Webpack, npm
-
-Ссылка на GitHub-pg: https:floweredcat.github.io/mesto/dist
+Ссылка на [GitHub-pg](https:floweredcat.github.io/mesto/dist)
